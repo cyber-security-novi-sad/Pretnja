@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assetDefinitions xmlns="https://www.eds.org/eds-schemas"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://www.eds.org/tas-schemas">
+    
+    <assetDefinition assetId="as_adminpassword" 
+        assetTitle="Administrator Password"
+        protectConfidentiality="true"
+        protectIntegrity="true"
+        protectAvailability="false"
+        impactConfidentiality="5" 
+        impactIntegrity="5"  />
+    
+    <assetDefinition assetId="as_sessioncookie" 
+        assetTitle="Session Cookie"
+        protectConfidentiality="true"
+        protectIntegrity="false"
+        protectAvailability="false"
+        impactConfidentiality="4" />
+    
+    <assetDefinition assetId="as_pii" 
+        assetTitle="Personal Identifiable Information"
+        protectConfidentiality="true"
+        protectIntegrity="true"
+        protectAvailability="true"
+        impactConfidentiality="4" 
+        impactIntegrity="4" 
+        impactAvailability="3" />
+    
+    <assetDefinition assetId="as_workstation" 
+        assetTitle="Work Station"
+        protectConfidentiality="false"
+        protectIntegrity="true"
+        protectAvailability="true"
+        impactIntegrity="5" 
+        impactAvailability="5" />
+    
+    
+</assetDefinitions>

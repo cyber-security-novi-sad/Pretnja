@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagram xmlns="https://www.eds.org/eds-schemas"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://www.eds.org/eds-schemas">
+    
+    <elements>
+        
+        <browser id="ed1000001"            
+            name="Firefox Browser">
+            <assets>                
+                <asset assetId="as_adminpassword" />
+                <asset assetId="as_sessioncookie" />
+            </assets>      
+        </browser>
+        
+        <webServer id="ed1000002"  
+            name="Server">
+            <assets>             
+                <asset assetId="as_adminpassword" />
+                <asset assetId="as_sessioncookie" />   
+                <asset assetId="as_workstation" />
+            </assets>      
+        </webServer>
+        
+        <webService id="ed1000003"
+            name="Database Server">
+            <assets>                
+                <asset assetId="as_adminpassword" />
+                <asset assetId="as_pii" />
+                <asset assetId="as_workstation" />
+            </assets>        
+        </webService>   
+        
+        <logFile id="ed1000004"  
+            name="Log store">
+            <assets>                
+                <asset assetId="as_adminpassword" />
+            </assets>          
+        </logFile>  
+        
+        <sqlDatabase id="ed1000005" 
+            name="Main Database">
+            <assets>                
+                <asset assetId="as_adminpassword" />
+                <asset assetId="as_pii" />
+            </assets>      
+        </sqlDatabase>
+            
+    </elements>
+    
+    <flows>   
+        <http id="fd1000006"
+            source="ed1000001" 
+            destination="ed1000002" 
+            name="Server Request" >
+            <boundariesCrossed>
+                <boundaryCross boundary="sd1000010"/>
+            </boundariesCrossed>
+            <assets>                
+                <asset assetId="as_adminpassword" />
+                <asset assetId="as_sessioncookie" />
+            </assets>      
+        </http>    
+        
+        <http id="fd1000007" 
+            source="ed1000002" 
+            destination="ed1000001" 
+            name="Server Response" >
+            <boundariesCrossed>
+                <boundaryCross boundary="sd1000010"/>
+            </boundariesCrossed>
+            <assets>                
+                <asset assetId="as_sessioncookie" />
+            </assets>      
+        </http>
+        
+        <binary id="fd1000008" 
+            source="ed1000002"
+            destination="ed1000003" 
+            name="Database Request" >
+            <boundariesCrossed>
+                <boundaryCross boundary="sd1000011"/>
+            </boundariesCrossed>
+            <assets>               
+                <asset assetId="as_adminpassword" /> 
+                <asset assetId="as_pii" />
+            </assets>   
+        </binary>
+        
+        <binary id="fd1000009" 
+            source="ed1000003" 
+            destination="ed1000002" 
+            name="Database Response" >
+            <boundariesCrossed>
+                <boundaryCross boundary="sd1000011"/>
+            </boundariesCrossed>
+            <assets>                
+                <asset assetId="as_adminpassword" />
+                <asset assetId="as_pii" />
+            </assets>   
+        </binary>
+        
+        <binary id="fd1000018" 
+            source="ed1000002"
+            destination="ed1000004" 
+            name="Log Request" >
+            <assets>                
+                <asset assetId="as_adminpassword" />
+            </assets>   
+        </binary>
+        
+        <binary id="fd1000019" 
+            source="ed1000004" 
+            destination="ed1000002" 
+            name="Log Response" >
+        </binary>
+        
+        <binary id="fd1000028" 
+            source="ed1000003"
+            destination="ed1000005" 
+            name="DataStore Request" >
+            <assets>                
+                <asset assetId="as_adminpassword" />
+                <asset assetId="as_pii" />
+            </assets>   
+        </binary>
+        
+        <binary id="fd1000029" 
+            source="ed1000005" 
+            destination="ed1000003" 
+            name="DataStore Response" >
+            <assets>                
+                <asset assetId="as_adminpassword" />
+                <asset assetId="as_pii" />
+            </assets>   
+        </binary>
+    </flows>
+    
+    <boundaries>        
+        <internetBoundary id="sd1000010"
+            name="Internet Edge" />
+        
+        <machineBoundary id="sd1000011" 
+            name="Different machine" />
+    </boundaries>
+    
+    <sections>
+        
+    </sections>
+</diagram>

@@ -1,0 +1,12 @@
+schemaLocation = resources\schemas\ComponentsSchema.xsd;
+schemaLocationFolder = resources\schemas;
+assetLocation = resources\diagrams\assets_definition.xml;
+assetLocationFolder = resources\diagrams;
+exploitLocation = resources\diagrams\exploits_definitions.xml;
+exploitLocationFolder = resources\diagrams;
+diagramLocationFolder = E:\Users\NemanjaM\Documents\Practice\Master\EDS\EDS-Solution\resources\diagrams;
+reportLocationFolder = e:\Users\NemanjaM\Desktop;
+rulesLocations = resources/rules/rules_admin_password.drl,
+		resources/rules/rules_cookie.drl,
+		resources/rules/rules_pii.drl,
+		resources/rules/rules_work_station.drl;

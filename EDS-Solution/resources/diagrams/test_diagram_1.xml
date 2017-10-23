@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagram xmlns="https://www.eds.org/eds-schemas"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://www.eds.org/eds-schemas">
+    
+    <elements>
+        <browser id="ed1000001"             
+            name="Firefox Browser" >
+            <assets>           
+                <asset assetId="as_adminpassword" />     
+                <asset assetId="as_sessioncookie" />
+                <asset assetId="as_pii" />
+                <asset assetId="as_workstation" />
+            </assets>      
+        </browser>
+        
+        <webApplication id="ed1000002"   
+            name="SEP Server" >
+            <assets>
+                <asset assetId="as_adminpassword" />
+                <asset assetId="as_sessioncookie" />
+                <asset assetId="as_pii" />
+                <asset assetId="as_workstation" />
+            </assets>      
+        </webApplication>
+        
+        <sqlDatabase id="ed1000003"   
+            name="Main Database" >
+            <assets>
+                <asset assetId="as_adminpassword" />
+                <asset assetId="as_sessioncookie" />
+                <asset assetId="as_pii" />
+                <asset assetId="as_workstation" />
+            </assets>      
+        </sqlDatabase>        
+    </elements>
+    
+    <flows>		
+        <http
+            id="fd1000006"
+            source="ed1000001"
+            destination="ed1000002" 
+            name="Server Request" >   
+        </http>    
+        
+        <http id="fd1000007" 
+            source="ed1000002" 
+            destination="ed1000001" 
+            name="Server Response"  >    
+        </http>
+        
+        <binary id="fd1000008" 
+            source="ed1000002"
+            destination="ed1000003" 
+            name="Database Request" >    
+        </binary>
+        
+        <binary id="fd1000009" 
+            source="ed1000003" 
+            destination="ed1000002" 
+            name="Database Response" >   
+        </binary>
+    </flows>
+    
+    <boundaries>             
+    </boundaries>
+    
+    <sections>
+    </sections>
+</diagram>

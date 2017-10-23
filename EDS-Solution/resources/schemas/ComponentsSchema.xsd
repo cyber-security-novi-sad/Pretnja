@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+    targetNamespace="https://www.eds.org/eds-schemas" elementFormDefault="qualified"
+    vc:minVersion="1.1" xmlns:es="https://www.eds.org/eds-schemas">
+
+    <xs:redefine schemaLocation="DiagramSchema.xsd">
+        <xs:group name="processes">
+            <xs:choice>
+                <xs:group ref="es:processes"/>
+                <xs:group ref="es:processElements"/>
+            </xs:choice>
+        </xs:group>
+        <xs:group name="dataStores">
+            <xs:choice>
+                <xs:group ref="es:dataStores"/>
+                <xs:group ref="es:dataStoreElements"/>
+            </xs:choice>
+        </xs:group>
+        <xs:group name="externalEntities">
+            <xs:choice>
+                <xs:group ref="es:externalEntities"/>
+                <xs:group ref="es:externalEntityElements"/>
+            </xs:choice>
+        </xs:group>
+        <xs:group name="flows">
+            <xs:choice>
+                <xs:group ref="es:flows"/>
+                <xs:group ref="es:flowElements"/>
+            </xs:choice>
+        </xs:group>
+        <xs:group name="boundaries">
+            <xs:choice>
+                <xs:group ref="es:boundaries"/>
+                <xs:group ref="es:boundaryElements"/>
+            </xs:choice>
+        </xs:group>
+        <xs:group name="sections">
+            <xs:choice>
+                <xs:group ref="es:sections"/>
+                <xs:group ref="es:networkSectionElements"/>
+            </xs:choice>
+        </xs:group>
+        <xs:complexType name="flow">
+            <xs:complexContent>
+                <xs:extension base="es:flow">
+                    <xs:attributeGroup ref="es:additionalFlowProperties"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="process">
+            <xs:complexContent>
+                <xs:extension base="es:process">
+                    <xs:attributeGroup ref="es:additionalProcessProperties"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="dataStore">
+            <xs:complexContent>
+                <xs:extension base="es:dataStore">
+                    <xs:attributeGroup ref="es:additionaDatastoreProperties"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="externalEntity">
+            <xs:complexContent>
+                <xs:extension base="es:externalEntity">
+                    <xs:attributeGroup ref="es:additionalExternalEntityProperties"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="blockShape">
+            <xs:complexContent>
+                <xs:extension base="es:blockShape">
+                    <xs:attributeGroup ref="es:additionalSectionProperties"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="shape">
+            <xs:complexContent>
+                <xs:extension base="es:shape">
+                    <xs:attributeGroup ref="es:additionalBoundaryProperties"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:redefine>
+    <xs:group name="processElements">
+        <xs:choice>
+            <xs:element name="webApplication">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="es:process">
+                            <xs:attribute name="nothing" use="prohibited"/>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="webService">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="es:process">
+                            <xs:attribute name="nothing" use="prohibited"/>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="webServer">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="es:process">
+                            <xs:attribute name="nothing" use="prohibited"/>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="managedApplication" type="es:process"/>
+            <xs:element name="thickClient">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="es:process">
+                            <xs:attribute name="nothing" use="prohibited"/>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="specialApplication" type="es:process"/>
+        </xs:choice>
+    </xs:group>
+    <xs:group name="dataStoreElements">
+        <xs:choice>
+            <xs:element name="cloudStorage">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="es:dataStore">
+                            <xs:attribute name="nothing" use="prohibited"/>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="sqlDatabase">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="es:dataStore">
+                            <xs:attribute name="nothing" use="prohibited"/>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="noSqlDatabase">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="es:dataStore">
+                            <xs:attribute name="nothing" use="prohibited"/>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="fileSystem">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="es:dataStore">
+                            <xs:attribute name="nothing" use="prohibited"/>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="configurationFile" type="es:dataStore"/>
+            <xs:element name="cache" type="es:dataStore"/>
+            <xs:element name="html5LocalStorage" type="es:dataStore"/>
+            <xs:element name="logFile">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="es:dataStore">
+                            <xs:attribute name="nothing" use="prohibited"/>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+        </xs:choice>
+    </xs:group>
+    <xs:group name="externalEntityElements">
+        <xs:choice>
+            <xs:element name="browser">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="es:externalEntity">
+                            <xs:attribute name="nothing" use="prohibited"/>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="externalWebApplication">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="es:externalEntity">
+                            <xs:attribute name="nothing" use="prohibited"/>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="externalWebService">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="es:externalEntity">
+                            <xs:attribute name="nothing" use="prohibited"/>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="authorizedProvider" type="es:externalEntity"/>
+            <xs:element name="securityGateway" type="es:externalEntity"/>
+            <xs:element name="smartPhone" type="es:externalEntity"/>
+            <xs:element name="user" type="es:externalEntity"/>
+        </xs:choice>
+    </xs:group>
+    <xs:group name="flowElements">
+        <xs:choice>
+            <xs:element name="binary">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="es:flow">
+                            <xs:attribute name="nothing" use="prohibited"/>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="http">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="es:flow">
+                            <xs:attribute name="nothing" use="prohibited"/>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="https">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="es:flow">
+                            <xs:attribute name="nothing" use="prohibited"/>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="tcp" type="es:flow"/>
+            <xs:element name="udp" type="es:flow"/>
+            <xs:element name="ipSec" type="es:flow"/>
+            <xs:element name="namedPipe" type="es:flow"/>
+            <xs:element name="smb" type="es:flow"/>
+            <xs:element name="sql" type="es:flow"/>
+            <xs:element name="ssl" type="es:flow"/>
+            <xs:element name="rpcOrDcom" type="es:flow"/>
+        </xs:choice>
+    </xs:group>
+    <xs:group name="boundaryElements">
+        <xs:choice>
+            <xs:element name="internetBoundary">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="es:shape">
+                            <xs:attribute name="nothing" use="prohibited"/>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="machineBoundary">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="es:shape">
+                            <xs:attribute name="nothing" use="prohibited"/>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="localDMZBoundary" type="es:shape"/>
+            <xs:element name="appContainerBoundary" type="es:shape"/>
+        </xs:choice>
+    </xs:group>
+    <xs:group name="trustSectionElements">
+        <xs:choice> </xs:choice>
+    </xs:group>
+    <xs:group name="networkSectionElements">
+        <xs:choice>
+            <xs:element name="internetDmz">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="es:blockShape">
+                            <xs:attribute name="nothing" use="prohibited"/>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="officeNetwork" type="es:blockShape"/>
+            <xs:element name="sharedNetwork" type="es:blockShape"/>
+            <xs:element name="companyTrustSection">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="es:blockShape">
+                            <xs:attribute name="nothing" use="prohibited"/>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="sandboxTrustSection">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="es:blockShape">
+                            <xs:attribute name="nothing" use="prohibited"/>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="otherTrustSection" type="es:blockShape"/>
+        </xs:choice>
+    </xs:group>
+    <xs:attributeGroup name="additionalFlowProperties"/>
+    <xs:attributeGroup name="additionalProcessProperties"/>
+    <xs:attributeGroup name="additionaDatastoreProperties"/>
+    <xs:attributeGroup name="additionalExternalEntityProperties"/>
+    <xs:attributeGroup name="additionalSectionProperties"/>
+    <xs:attributeGroup name="additionalBoundaryProperties"/>
+</xs:schema>

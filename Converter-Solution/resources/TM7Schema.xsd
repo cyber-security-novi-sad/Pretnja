@@ -1,0 +1,390 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ThreatModel">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Borders">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="aKeyValueOfguidanyType">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="aKey" type="xs:string" />
+                    <xs:element name="aValue">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="GenericTypeId">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                  <xs:attribute name="ch" type="xs:string" use="required" />
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="Guid">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                  <xs:attribute name="ch" type="xs:string" use="required" />
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="Properties">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element maxOccurs="unbounded" name="aanyType">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="bDisplayName" type="xs:string" />
+                                      <xs:element name="bName" type="xs:string" />
+                                      <xs:element name="bValue">
+                                        <xs:complexType mixed="true">
+                                          <xs:sequence minOccurs="0">
+                                            <xs:element maxOccurs="unbounded" name="astring" type="xs:string" />
+                                          </xs:sequence>
+                                          <xs:attribute name="inil" type="xs:boolean" use="optional" />
+                                          <xs:attribute name="chc" type="xs:string" use="optional" />
+                                          <xs:attribute name="itype" type="xs:string" use="optional" />
+                                        </xs:complexType>
+                                      </xs:element>
+                                      <xs:element minOccurs="0" name="bSelectedIndex" type="xs:unsignedByte" />
+                                    </xs:sequence>
+                                    <xs:attribute name="chb" type="xs:string" use="required" />
+                                    <xs:attribute name="itype" type="xs:string" use="required" />
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                              <xs:attribute name="ch" type="xs:string" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="TypeId">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                  <xs:attribute name="ch" type="xs:string" use="required" />
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="Height">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:unsignedShort">
+                                  <xs:attribute name="ch" type="xs:string" use="required" />
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="Left">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:unsignedShort">
+                                  <xs:attribute name="ch" type="xs:string" use="required" />
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="StrokeDashArray">
+                            <xs:complexType>
+                              <xs:attribute name="ch" type="xs:string" use="required" />
+                              <xs:attribute name="inil" type="xs:boolean" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="StrokeThickness">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:unsignedByte">
+                                  <xs:attribute name="ch" type="xs:string" use="required" />
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="Top">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:unsignedShort">
+                                  <xs:attribute name="ch" type="xs:string" use="required" />
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="Width">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:unsignedShort">
+                                  <xs:attribute name="ch" type="xs:string" use="required" />
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="itype" type="xs:string" use="required" />
+                        <xs:attribute name="zId" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="cha" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Lines">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="aKeyValueOfguidanyType">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="aKey" type="xs:string" />
+                    <xs:element name="aValue">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="GenericTypeId">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                  <xs:attribute name="ch" type="xs:string" use="required" />
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="Guid">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                  <xs:attribute name="ch" type="xs:string" use="required" />
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="Properties">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element maxOccurs="unbounded" name="aanyType">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="bDisplayName" type="xs:string" />
+                                      <xs:element name="bName" type="xs:string" />
+                                      <xs:element name="bValue">
+                                        <xs:complexType mixed="true">
+                                          <xs:sequence minOccurs="0">
+                                            <xs:element maxOccurs="unbounded" name="astring" type="xs:string" />
+                                          </xs:sequence>
+                                          <xs:attribute name="inil" type="xs:boolean" use="optional" />
+                                          <xs:attribute name="chc" type="xs:string" use="optional" />
+                                          <xs:attribute name="itype" type="xs:string" use="optional" />
+                                        </xs:complexType>
+                                      </xs:element>
+                                      <xs:element minOccurs="0" name="bSelectedIndex" type="xs:unsignedByte" />
+                                    </xs:sequence>
+                                    <xs:attribute name="chb" type="xs:string" use="required" />
+                                    <xs:attribute name="itype" type="xs:string" use="required" />
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                              <xs:attribute name="ch" type="xs:string" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="TypeId">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                  <xs:attribute name="ch" type="xs:string" use="required" />
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="HandleX">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:unsignedShort">
+                                  <xs:attribute name="ch" type="xs:string" use="required" />
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="HandleY">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:unsignedShort">
+                                  <xs:attribute name="ch" type="xs:string" use="required" />
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="PortSource">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                  <xs:attribute name="ch" type="xs:string" use="required" />
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="PortTarget">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                  <xs:attribute name="ch" type="xs:string" use="required" />
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="SourceGuid">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                  <xs:attribute name="ch" type="xs:string" use="required" />
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="SourceX">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:unsignedShort">
+                                  <xs:attribute name="ch" type="xs:string" use="required" />
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="SourceY">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:unsignedShort">
+                                  <xs:attribute name="ch" type="xs:string" use="required" />
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="TargetGuid">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                  <xs:attribute name="ch" type="xs:string" use="required" />
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="TargetX">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:unsignedShort">
+                                  <xs:attribute name="ch" type="xs:string" use="required" />
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="TargetY">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:unsignedShort">
+                                  <xs:attribute name="ch" type="xs:string" use="required" />
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="itype" type="xs:string" use="required" />
+                        <xs:attribute name="zId" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="cha" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ThreatInstances">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="aKeyValueOfstringThreatpc_P0_PhOB">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="aKey" type="xs:string" />
+                    <xs:element name="aValue">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="bChangedBy">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                  <xs:attribute name="inil" type="xs:boolean" use="optional" />
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="bDrawingSurfaceGuid" type="xs:string" />
+                          <xs:element name="bFlowGuid" type="xs:string" />
+                          <xs:element name="bId" type="xs:unsignedShort" />
+                          <xs:element name="bInteractionKey" type="xs:string" />
+                          <xs:element name="bInteractionString">
+                            <xs:complexType>
+                              <xs:attribute name="inil" type="xs:boolean" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="bModifiedAt" type="xs:string" />
+                          <xs:element name="bPriority" type="xs:string" />
+                          <xs:element name="bProperties">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element maxOccurs="unbounded" name="aKeyValueOfstringstring">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="aKey" type="xs:string" />
+                                      <xs:element name="aValue" type="xs:string" />
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="bSourceGuid" type="xs:string" />
+                          <xs:element name="bState" type="xs:string" />
+                          <xs:element name="bStateInformation">
+                            <xs:complexType>
+                              <xs:attribute name="inil" type="xs:boolean" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="bTargetGuid" type="xs:string" />
+                          <xs:element name="bTitle">
+                            <xs:complexType>
+                              <xs:attribute name="inil" type="xs:boolean" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="bTypeId" type="xs:string" />
+                          <xs:element name="bUpgraded" type="xs:boolean" />
+                          <xs:element name="bUserThreatCategory">
+                            <xs:complexType>
+                              <xs:attribute name="inil" type="xs:boolean" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="bUserThreatDescription">
+                            <xs:complexType>
+                              <xs:attribute name="inil" type="xs:boolean" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="bUserThreatShortDescription">
+                            <xs:complexType>
+                              <xs:attribute name="inil" type="xs:boolean" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="bWide" type="xs:boolean" />
+                        </xs:sequence>
+                        <xs:attribute name="chb" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="cha" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,154 @@
+//created on: Jun 6, 2017
+package com.eds.rules
+
+//list any import classes here.
+import com.eds.model.risk_pattern.*;
+import com.eds.EDS_Library.diagram.Process;
+import com.eds.EDS_Library.diagram.Diagram.Elements.SqlDatabase;
+import com.eds.EDS_Library.diagram.Diagram.Flows.Http;
+import com.eds.EDS_Library.diagram.Diagram.Elements.Browser;
+import com.eds.EDS_Library.diagram.*;
+import com.eds.model.risk_pattern.ExploitOfAsset;
+import java.util.List;
+
+//declare any global variables here
+
+
+rule "Asset:_Work_station"
+    when
+     	pattern : DiagramPattern($list : assets)  
+     	$value : AssetDefinition() from $list  
+     	Boolean(booleanValue == true) from $value.assetId == "as_workstation"
+     	
+     	Boolean(booleanValue == true) from pattern.element.runLevel == "HIGH_PRIVILEGE"  
+    then
+        drools.setFocus("ws_check_request");
+end
+
+rule "WS_Request:_Check_Resource_Aspects"
+	agenda-group "ws_check_request"
+    when
+     	DiagramPattern($list : assets)  
+     	$value : AssetDefinition() from $list  
+     	Boolean(booleanValue == true) from $value.protectConfidentiality == true or
+     	Boolean(booleanValue == true) from $value.protectAvailability == true or
+     	Boolean(booleanValue == true) from $value.protectIntegrity == true
+     then
+        drools.setFocus("ws_check_primary");
+end
+
+/* *************** CHECK EXPLOITS	 	****************/
+
+rule "WS:_Check_process"
+	agenda-group "ws_check_primary"
+    when
+        pattern : DiagramPattern(element instanceof Process)                    
+    then
+        pattern.addExploitAndAsset(new ExploitOfAsset("ed_elevationprivilege", "as_workstation"));	// pretpostavimo da ce postojati ukoliko imamo proces 
+       	drools.setFocus("ws_process");
+end
+
+
+rule "WS:_Check_external"
+	agenda-group "ws_check_primary"
+    when
+        pattern : DiagramPattern(element instanceof ExternalEntity)                    
+    then
+        drools.setFocus("ws_external");
+end
+
+rule "WS:_Check_datastore"
+	agenda-group "ws_check_primary"
+    when
+        DiagramPattern(element instanceof DataStore)                    
+    then
+        drools.setFocus("ws_datastore");
+end
+
+rule "WS:_Check_external_browser"
+	agenda-group "sc_check_primary"
+    when
+        pattern : DiagramPattern(element instanceof Browser)       
+     	Boolean(booleanValue == true) from pattern.traceStart instanceof Process                      
+    then
+        pattern.addExploitAndAsset(new ExploitOfAsset("ed_xss", "as_workstation"));	// pretpostavimo da XSS postoji svaki put kada podaci idu ka Ext.Ent.
+        drools.setFocus("ws_external");
+end
+
+rule "WS:_Check_Confidentiality_for_Session_Hijack"
+	agenda-group "ws_check_primary"			// ako je prenos podataka otvoren, mogu se procitati kredencijali ili cookie, pomocu cega se moze ukrasi sesija
+    when									// nije ukljuceno u prethodno pravilo, posto ona zahteva da se stiti confidentality
+     	pattern : DiagramPattern($list : trace)
+     	elementInTrace : Element() from $list
+     	DiagramPattern(elementInTrace instanceof Http) 
+		Boolean(booleanValue == true) from ((Http)elementInTrace).containsCookies == true
+    then
+        pattern.addExploitAndAsset(new ExploitOfAsset("ed_sessionhijack", "as_workstation"));
+end
+
+
+rule "WS_Datastore:_SQL_Database"
+	agenda-group "ws_datastore"
+    when
+        pattern: DiagramPattern(element instanceof SqlDatabase)  
+		Boolean(booleanValue == true) from pattern.traceStart instanceof ExternalEntity
+    then
+        pattern.addExploitAndAsset(new ExploitOfAsset("ed_injectionsql", "as_workstation"));	// pretpostavimo da XML Injection postoji svaki put kada podaci idu ka SQL bazi
+        drools.setFocus("ws_datastore_remove_potential_injection");
+end
+
+rule "WS_Datastore:_Encrypting"
+	agenda-group "ws_datastore"
+    when
+     	pattern : DiagramPattern()  
+		Boolean(booleanValue == true) from ((DataStore)pattern.element).dataIsEncrypted == false
+		Boolean(booleanValue == true) from ((DataStore)pattern.element).storeCredentials == true                
+    then
+        pattern.addExploitAndAsset(new ExploitOfAsset("ed_sessionhijack", "as_workstation"));
+end
+
+rule "WS_Datastore:_SQL_Database_Remove_injection"
+	agenda-group "ws_datastore_remove_potential_injection"
+    when    
+        pattern : DiagramPattern(element instanceof SqlDatabase)  
+     	DiagramPattern($list : trace)
+     	elementInTrace : Element() from $list
+     	Boolean(booleanValue == true) from elementInTrace instanceof Process  
+     	Boolean(booleanValue == true) from ((Process)elementInTrace).sanitizeInput == true                
+    then
+        pattern.removeExploitAndAsset(new ExploitOfAsset("ed_injectionsql", "as_workstation"));
+end
+
+
+rule "WS_External:_Process_XSS"
+	agenda-group "ws_external"
+    when   
+     	pattern : DiagramPattern($list : trace)
+     	elementInTrace : Element() from $list
+     	Boolean(booleanValue == true) from elementInTrace instanceof Process  
+     	Boolean(booleanValue == true) from ((Process)elementInTrace).sanitizeOutput == true
+    then
+        pattern.removeExploitAndAsset(new ExploitOfAsset("ed_xss", "as_workstation"));
+end
+
+
+rule "WS_Process:_Session_Timeout1"	// ako se sesija ne tajmautuje, moguce je pogoditi njen ID pa ga iskoristiti
+	agenda-group "ws_process"
+    when
+     	pattern : DiagramPattern()
+		Boolean(booleanValue == true) from ((Process)pattern.element).sessionHasTimeouts == false
+		Boolean(booleanValue == true) from pattern.traceStart == null
+    then
+        pattern.addExploitAndAsset(new ExploitOfAsset("ed_sessionhijack", "as_workstation"));
+end
+
+rule "WS_Process:_Check_Access_Controll"	// ako se sesija ne tajmautuje, moguce je pogoditi njen ID pa ga iskoristiti
+	agenda-group "ws_process"
+    when
+     	pattern : DiagramPattern()
+     	
+		Boolean(booleanValue == true) from ((Process)pattern.element).requiresAuthentication == true
+		Boolean(booleanValue == true) from ((Process)pattern.element).requiresAuthorization == true
+    then
+        pattern.removeExploitAndAsset(new ExploitOfAsset("ed_elevationprivilege", "as_workstation"));
+end

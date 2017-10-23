@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
+    vc:minVersion="1.1" targetNamespace="https://www.eds.org/eds-schemas"
+    xmlns:es="https://www.eds.org/eds-schemas">
+
+    <xs:simpleType name="impactType">
+        <xs:restriction base="xs:int">
+            <xs:minExclusive value="0"/>
+            <xs:maxExclusive value="6"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="assetDefinitions">
+        <xs:complexType>
+            <xs:sequence minOccurs="1">
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="assetDefinition"
+                    type="es:assetDefinition"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="assetDefinition">
+        <xs:attribute name="assetId" type="xs:ID" use="required"/>
+        <xs:attribute name="assetTitle" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:minLength value="1"/>
+                    <xs:maxLength value="44"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="protectConfidentiality" type="xs:boolean" use="optional" default="false"/>
+        <xs:attribute name="protectIntegrity" type="xs:boolean" use="optional" default="false"/>
+        <xs:attribute name="protectAvailability" type="xs:boolean" use="optional" default="false"/>
+        <xs:attribute name="impactConfidentiality" type="es:impactType" use="optional"/>
+        <xs:attribute name="impactIntegrity" type="es:impactType" use="optional"/>
+        <xs:attribute name="impactAvailability" type="es:impactType" use="optional"/>
+    </xs:complexType>
+</xs:schema>
