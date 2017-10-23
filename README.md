@@ -1,6 +1,6 @@
 # Exploits Detection System
 
-<p align="center"><img src="https://github.com/NNemanjaMM/EDS/blob/master/Wiki-Resources/icon.png"/></p>
+<p align="center"><img src="https://github.com/cyber-security-novi-sad/Pretnja/blob/master/Wiki-Resources/icon.png"/></p>
 
 Exploits Detection System (EDS) is a system that analyzes data flow diagrams (DFD), in order to find potential security exploits.
 
@@ -12,7 +12,7 @@ The system contains two tools. The first tool is used to apply changes in XML sc
 
 System structure alongside with its input and output can be seen in the image below.
 
-<p align="center"><img width="600" src="https://github.com/NNemanjaMM/EDS/blob/master/Wiki-Resources/structure.png"/></p>
+<p align="center"><img width="600" src="https://github.com/cyber-security-novi-sad/Pretnja/blob/master/Wiki-Resources/structure.png"/></p>
 
 ## Motivation
 This system is created as master's thesis work. The overall goal is to create useful software for detecting security exploits over the given system diagram. Moreover, this is a great opportunity for improving knowledge and capabilities in the domain of IT security and rule-based systems.
@@ -43,7 +43,7 @@ This system is created as master's thesis work. The overall goal is to create us
 
 ### Download and Install:
 (for Windows)
-- Open [download page](https://github.com/NNemanjaMM/EDS/blob/master/Setup/Setup.exe) and download installation file
+- Open [download page](https://github.com/cyber-security-novi-sad/Pretnja/blob/master/Setup/Setup.exe) and download installation file
 - Run installation file
 
 ###### Run EDS Application:
@@ -63,7 +63,7 @@ This system is created as master's thesis work. The overall goal is to create us
 + Nemanja Miladinović - [NNemanjaMM](https://github.com/NNemanjaMM)
 
 ## Additional info
-For more information see this repository's [wiki page](https://github.com/NNemanjaMM/EDS/wiki).
+For more information see this repository's [wiki page](https://github.com/cyber-security-novi-sad/Pretnja/wiki).
 
 ## Licence
-This project is licensed under the terms of the MIT License - for more information take a look at [license page](https://github.com/NNemanjaMM/TAS/blob/master/LICENSE) 
+This project is licensed under the terms of the MIT License - for more information take a look at [license page](https://github.com/cyber-security-novi-sad/Pretnja/blob/master/LICENSE) 
